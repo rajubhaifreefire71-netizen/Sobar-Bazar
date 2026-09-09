@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobar Bazar - সবার বাজার | আপনার বিশ্বস্ত অনলাইন শপ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d4af37;
+            --primary-dark: #b89228;
+            --secondary-color: #e2136e;
+            --dark-color: #222;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+        }
+
+        .top-bar {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--dark-color);
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .search-box {
+            display: flex;
+            flex: 0 1 500px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px 0 0 25px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--secondary-color);
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .add-cart-btn {
+            margin-top: auto;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: 0.2s;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            padding: 25px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .payment-options {
+            margin-top: 20px;
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+        }
+
+        .bkash-box {
+            background: #fce4ec;
+            border: 2px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .bkash-box h4 {
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-top: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .confirm-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span><i class="fa-solid fa-phone"></i> হেল্পলাইন: 01700-000000</span>
+        <span><i class="fa-solid fa-truck"></i> সারা বাংলাদেশে ক্যাশ অন ডেলিভারি</span>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo-container">
+                <img src="Picsart_26-09-09_22-13-22-864.jpg" alt="Sobar Bazar Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Sobar Bazar</h1>
+                    <span>সবার বাজার</span>
+                </div>
+            </a>
+
+            <div class="search-box">
+                <input type="text" placeholder="আপনার প্রয়োজনীয় পণ্য খুঁজুন...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="cart-icon" onclick="openCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>সবার বাজারে আপনাকে স্বাগতম!</h2>
+        <p>সেরা দামে সেরা মানের পণ্য কিনুন ঘরে বসেই</p>
+    </section>
+
+    <div class="container">
+        <h3 class="section-title">আমাদের জনপ্রিয় পণ্যসমূহ</h3>
+        <div class="product-grid" id="product-list">
+        </div>
+    </div>
+
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+            <h3><i class="fa-solid fa-cart-shopping"></i> আপনার শপিং কার্ট</h3>
+            
+            <div id="cart-items-container">
+                <p style="text-align:center; padding: 20px;">কার্ট খালি রয়েছে</p>
+            </div>
+
+            <h4 style="text-align: right; margin-top: 15px;">সর্বমোট: <span id="cart-total">৳0</span></h4>
+
+            <div class="payment-options">
+                <h3>পেমেন্ট পদ্ধতি নির্বাচন করুন</h3>
+                
+                <div class="form-group">
+                    <label>পেমেন্ট অপশন:</label>
+                    <select id="payment-method" onchange="togglePaymentBox()">
+                        <option value="bkash">bKash (বিকাশ অনলাইন পেমেন্ট)</option>
+                        <option value="cod">Cash on Delivery (ক্যাশ অন ডেলিভারি)</option>
+                    </select>
+                </div>
+
+                <div class="bkash-box" id="bkash-details">
+                    <h4><i class="fa-solid fa-mobile-screen-button"></i> বিকাশ মার্চেন্ট পেমেন্ট</h4>
+                    <p style="font-size: 13px; margin-top: 5px;">১. বিকাশ অ্যাপ বা *247# থেকে আমাদের <strong>01700-000000</strong> নম্বরে টাকা পাঠান।</p>
+                    <p style="font-size: 13px;">২. নিচে আপনার বিকাশ নম্বর এবং TrxID প্রদান করুন।</p>
+                    
+                    <div class="form-group">
+                        <label>আপনার বিকাশ নম্বর:</label>
+                        <input type="text" id="bkash-number" placeholder="017XXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>বিকাশ ট্রানজেকশন আইডি (TrxID):</label>
+                        <input type="text" id="bkash-trxid" placeholder="Ex: 9A8B7C6D">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label>আপনার নাম:</label>
+                    <input type="text" id="cust-name" placeholder="আপনার পূর্ণ নাম">
+                </div>
+                <div class="form-group">
+                    <label>ডেলিভারি ঠিকানা:</label>
+                    <input type="text" id="cust-address" placeholder="বিস্তারিত ঠিকানা">
+                </div>
+
+                <button class="confirm-btn" onclick="confirmOrder()">অর্ডার কনফার্ম করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Sobar Bazar (সবার বাজার) | সর্বস্বত্ব সংরক্ষিত</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: "স্মার্ট ওয়াচ (Smart Watch)", price: 1500, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" },
+            { id: 2, name: "ওয়্যারলেস হেডফোন", price: 1200, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" },
+            { id: 3, name: "প্রিমিয়াম মেনস টি-শার্ট", price: 450, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80" },
+            { id: 4, name: "অর্গানিক গ্রোসারী প্যাক", price: 850, img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        let cart = [];
+
+        function displayProducts() {
+            const list = document.getElementById('product-list');
+            list.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" class="product-img" alt="${p.name}">
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-price">৳${p.price}</div>
+                        <button class="add-cart-btn" onclick="addToCart(${p.id})">
+                            <i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            alert(`${product.name} কার্টে যোগ করা হয়েছে!`);
+        }
+
+        function updateCart() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; padding: 20px;">কার্ট খালি রয়েছে</p>`;
+                totalEl.innerText = `৳0`;
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span><b>৳${item.price}</b> <i class="fa-solid fa-trash" style="color:red; cursor:pointer; margin-left:10px" onclick="removeFromCart(${index})"></i></span>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = `৳${total}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function openCart() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function togglePaymentBox() {
+            const method = document.getElementById('payment-method').value;
+            const bkashBox = document.getElementById('bkash-details');
+            bkashBox.style.display = method === 'bkash' ? 'block' : 'none';
+        }
+
+        function confirmOrder() {
+            const name = document.getElementById('cust-name').value;
+            const address = document.getElementById('cust-address').value;
+            const method = document.getElementById('payment-method').value;
+
+            if (cart.length === 0) {
+                alert("আপনার কার্ট খালি!");
+                return;
+            }
+            if (!name || !address) {
+                alert("দয়া করে আপনার নাম এবং ঠিকানা প্রদান করুন।");
+                return;
+            }
+
+            if (method === 'bkash') {
+                const bkashNum = document.getElementById('bkash-number').value;
+                const trxid = document.getElementById('bkash-trxid').value;
+                if (!bkashNum || !trxid) {
+                    alert("দয়া করে বিকাশ নম্বর এবং ট্রানজেকশন আইডি (TrxID) দিন।");
+                    return;
+                }
+            }
+
+            alert(`ধন্যবাদ ${name}! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।`);
+            cart = [];
+            updateCart();
+            closeCart();
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>
